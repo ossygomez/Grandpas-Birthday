@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./assets/media/GBD-Logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grandpa's Birthday Music Festival</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <video playsinline autoplay muted loop id="sideral">
+    <source src="https://grandpasbirthday.com/assets/media/gpb_hero_video_1080.mp4" type="video/mp4" width="1920" height="1080" crossorigin="anonymous">
+    Your browser does not support HTML5 video.
+  </video>
+  <div id="app">
+    <audio ref="audioElm" src="assets/media/714007__jemmaisweird__immortality.mp3"></audio>
+  <div class="header-content fullscreen">
+    <div class="row header-row">
+      <div class="col language"><div class="lang-selector f-17 text-white"><span id="en" :class="selected == 'en' ? 'active' : ''" @click="selected = 'en'">EN</span><span id="es" :class="selected =='es' ? 'active' : ''" @click="selected = 'es'">ES</span></div></div>
+    </div>
+    <div class="row header-row second-row">
+      <div class="w-100 d-flex flex-row justify-content-between text-white">
+        <button class="sound align-self-start" @click="play">
+        <img src="/assets/media/icon-sound-on.svg" width="29" height="25" alt="mute/unmute icon"><span class="es turn-on text-white text-center bold">PLAY</span></button>
+        <a class="contact-us desktop f-18 text-white text-bold" href="actual_url_not_disclosed"><span v-if="selected=='en'">CONTACT US</span><span v-else>CONTÁCTANOS</span></a>
+      </div>
+      <div class="grandpa text-center">
+        <div class="GPB-logo">
+          <img src="assets/media/GBD-Logo.svg" alt="Grandpa's Birthday logo" width="478" height="831">
+          <p class="f-18 m-4 txt-bold text-white text-center" v-if="selected=='en'">ELECTRONIC MUSIC FESTIVAL</p>
+          <p class="f-18 m-4 txt-bold text-white text-center" v-else>FESTIVAL DE MÚSICA ELECTRÓNICA</p>
+        </div>
+      </div>
+      <div class="w-100 d-lg-flex d-md-block justify-content-lg-between align-items-lg-end text-sm-center text-md-center">
+        <div class="text-white text-center text-md-start">
+          <p class="f-24 txt-medium">Aeroparque<br />Juan Pablo II</p>
+        <p class="f-24 very-bold mb-0"><span v-if="selected=='en'">OCT • 26 • 2024</span><span v-else>26 • OCT • 2024</span></p>
+        </div>
+        <div class="grays">
+        <a href="#line-up" v-if="selected=='en'"><p class="gray-box text-center text-white f-18">CHECK OUT THE LINE UP</p></a>
+        <a href="#line-up" v-else><p class="gray-box text-center text-white f-18">VER LINE UP</p></a>
+        <a href="#tickets" v-if="selected=='en'"><p class="gray-box text-center text-white f-18">BUY TICKETS</p></a>
+        <a href="#tickets" v-else><p class="gray-box text-center text-white f-18">COMPRAR ENTRADAS</p></a>
+      </div>
+      </div>
+      <button type="button" class="contact-us mobile f-18 text-white text-bold"><span v-if="selected=='en'">CONTACT US</span><span v-else>CONTÁCTANOS</span></button>
+    </div>
+    <div class="lineup row">
+      <div>        
+      </div>
+      <div id="line-up">
+        <h2 class="f-90"><span class="very-bold text-white">LINE UP</span><br><span class="txt-bold text-white" v-if="selected=='en'">COMING SOON</span><span class="txt-bold text-white" v-else>PRÓXIMAMENTE</span></h2>
+        <p class="f-24 txt-bold txt-pink" v-if="selected=='en'">To be announced on March 1st, 2024</p>
+        <p class="f-24 txt-bold txt-pink" v-else>Revelación de artistas el 1 de marzo de 2024</p>
+      </div>
+      <div></div>
+    </div>
+    <div class="row starfield text-center">
+      <div id="tickets">
+        <p class="f-184 text-left text-white very-bold" v-if="selected=='en'">GET YOUR TICKETS HERE</p>
+        <p class="f-184 text-left text-white very-bold" v-else>COMPRA TUS ENTRADAS AQUÍ</p>
+      </div>
+      <div class="glass">
+        <div class="pre-sale">
+          <p class="f-48 text-white very-bold"><span v-if="selected=='en'">PRE-SALE</span><span v-else>PRE-VENTA</span></p>
+        </div>
+        <div class="waiting-list text text-center">
+          <button type="button" class="contact-us1 f-18 text-white text-bold" @click="(event) => warn('Coming soon! / Próximamente', event)"><span v-if="selected=='en'">JOIN THE WAITING LIST</span><span v-else>ÚNETE A LA LISTA DE ESPERA</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="sponsors-row row">
+      <div>        
+      </div>
+      <div>
+        <h2 class="f-90"><span class="very-bold text-white" v-if="selected=='en'">SPONSORS</span><span class="very-bold text-white" v-else>PATROCINADORES</span></h2>
+        
+      </div>
+      <div></div>
+    </div>
+    <div class="sponsors-carousel">
+      <div></div>
+      <div class="slider-body">
+        <div class="slider">
+          <div class="slide-track">
+            
+            <div class="slide" v-for="sponsor in sponsors">
+              <img :src="sponsor.image" height="100" width="300" :alt="sponsor.name" />
+            </div>
+          </div>
+        </div>
+      </div>
+    <div></div>
+    </div>
+  </div>
+  
+
+
+</div> <!-- End of the app -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script type="text/javascript">
+    let timer = null;
+    const AUTO_INTERVAL = 2000;
+    const { createApp } = Vue
+    createApp({
+      data(){
+        return{
+          selected: 'es',
+          sponsors: []
+        }
+       },
+      async mounted() {
+        // Init variables
+        var self= this
+        self.sponsors = []
+        const response = await fetch('assets/sponsors.json', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }}
+        )
+      data = await response.json()
+      self.sponsors = data.sponsors
+      console.log(self.sponsors)
+       },
+      methods: {
+        play: function(event) {
+          var a = this.$refs.audioElm;
+          if (a.paused) {
+            a.play();
+          } else {
+            a.pause();
+          }
+        },
+        warn(message, event) {
+    // now we have access to the native event
+    if (event) {
+      event.preventDefault()
+    }
+    alert(message)
+  }
+        },
+      watch: {
+        
+       }
+     }).mount('#app')
+     
+    </script>
+</body>
+</html>
